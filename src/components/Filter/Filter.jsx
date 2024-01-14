@@ -1,7 +1,20 @@
 import css from "./Filter.module.css"
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+import { filterContacts } from "components/Redux/FilterSlice";
 
-export const Filter = ({filterValue, onChange}) => {
+export const Filter = () => {
+  
+  const dispatch = useDispatch();
+ 
+  const filter = useSelector(state => state.filter);
+
+  const changeFilter = (event) => {
+
+    dispatch(filterContacts(event.currentTarget.value))
+    
+  }
+
 
     return (
        <div className={css.filterBox}>
@@ -11,8 +24,8 @@ export const Filter = ({filterValue, onChange}) => {
             className={css.filterInput}
             type="text"
             name="filter"
-            value={filterValue}
-            onChange={onChange}
+            value={filter}
+            onChange={changeFilter}
           />
             </label>
             </div>

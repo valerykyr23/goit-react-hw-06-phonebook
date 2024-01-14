@@ -1,60 +1,43 @@
 // eslint-disable-next-line
-import React, { useState} from 'react';
+import { nanoid } from 'nanoid';
+import { addContact } from 'components/Redux/ContactsSlice';
+import { useDispatch } from 'react-redux';
 import css from './ContactForm.module.css';
 
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = ({}) => {
 
 
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  
+  const dispatch = useDispatch();
 
-  const handleInputChange = (event) => {
-   
-    
+  const formSubmithandler = (event) => {
 
-    switch (event.currentTarget.name) {
-
-      case 'name':
-        setName(event.currentTarget.value)
-        break;
-      
-      case 'number':
-        setNumber(event.currentTarget.value)
-        break;
-      
-      default:
-
-        console.log("default")
-        break;
-
-    }
-  };
-  
-  
-  
-  const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, number });
-    setName('');
-    setNumber('');
-  };
+   
+    const newContact = {
+      id: nanoid(),
+      name: event.target.elements.name.value,
+      number: event.target.elements.number.value
+    }
 
-  
+    dispatch(addContact(newContact));
+
+    event.target.reset();
+
+  }
   
 
   return (
       
-    <form className={css.mainForm} onSubmit={handleSubmit}>
+    <form className={css.mainForm} onSubmit={formSubmithandler}>
       <div>
         <label className={css.formLabel}>
           
           Name
           <input
             className={css.formInput}
-            value={name}
-            onChange={handleInputChange}
+            // value={name}
+            // onChange={handleInputChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -70,8 +53,8 @@ export const ContactForm = ({ onSubmit }) => {
           Number
           <input
             className={css.formInput}
-            value={number}
-            onChange={handleInputChange}
+            // value={number}
+            // onChange={handleInputChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
