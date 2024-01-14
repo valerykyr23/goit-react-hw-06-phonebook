@@ -7,20 +7,17 @@ export const Filter = () => {
   
   const dispatch = useDispatch();
  
-  // const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.filter);
 
-
-const normalizedFilter = useSelector(state => state.filter.toLowerCase());
   
-    const visibleContactsList = useSelector(state => state.contacts.items.filter(item => item.name.toLowerCase().includes(normalizedFilter)));
-
-
+  
   const changeFilter = (event) => {
-
+    
     dispatch(filterContacts(event.currentTarget.value))
     
   }
 
+ 
 
     return (
        <div className={css.filterBox}>
@@ -30,7 +27,7 @@ const normalizedFilter = useSelector(state => state.filter.toLowerCase());
             className={css.filterInput}
             type="text"
             name="filter"
-            // value={filter}
+            value={filter}
             onChange={changeFilter}
           />
             </label>
