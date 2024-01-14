@@ -1,5 +1,5 @@
  .contactsList {
-
+max-height: 500vh;
 padding: 20px;
 overflow-y: hidden;
 font-size: 30px;
