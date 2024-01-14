@@ -1,5 +1,5 @@
 import css from "./Filter.module.css"
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
 import { filterContacts } from "components/Redux/FilterSlice";
 
@@ -7,7 +7,13 @@ export const Filter = () => {
   
   const dispatch = useDispatch();
  
-  const filter = useSelector(state => state.filter);
+  // const filter = useSelector(state => state.filter);
+
+
+const normalizedFilter = useSelector(state => state.filter.toLowerCase());
+  
+    const visibleContactsList = useSelector(state => state.contacts.items.filter(item => item.name.toLowerCase().includes(normalizedFilter)));
+
 
   const changeFilter = (event) => {
 
@@ -24,7 +30,7 @@ export const Filter = () => {
             className={css.filterInput}
             type="text"
             name="filter"
-            value={filter}
+            // value={filter}
             onChange={changeFilter}
           />
             </label>
@@ -33,7 +39,7 @@ export const Filter = () => {
 }
 
 
-Filter.propTypes = {
-  filterValue: PropTypes.string,
-  onChange: PropTypes.func
-}
+// Filter.propTypes = {
+//   filterValue: PropTypes.string,
+//   onChange: PropTypes.func
+// }

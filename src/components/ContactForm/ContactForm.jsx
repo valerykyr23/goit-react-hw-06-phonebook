@@ -1,16 +1,19 @@
 // eslint-disable-next-line
-import { nanoid } from 'nanoid';
+
+import { nanoid } from '@reduxjs/toolkit';
 import { addContact } from 'components/Redux/ContactsSlice';
 import { useDispatch } from 'react-redux';
 import css from './ContactForm.module.css';
 
 
-export const ContactForm = ({}) => {
-
-
+export const ContactForm = () => {
+  
+ 
   const dispatch = useDispatch();
 
   const formSubmithandler = (event) => {
+
+
 
     event.preventDefault();
    
