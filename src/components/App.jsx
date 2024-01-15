@@ -1,8 +1,5 @@
 // eslint-disable-next-line
 
-
-
-import { useSelector } from 'react-redux';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -12,9 +9,6 @@ import { Filter } from './Filter/Filter';
 
 export const App = () => {
   
-  const arrayFriends = useSelector(state => state.contacts);
-
-  console.log(arrayFriends)
     
     return (
       

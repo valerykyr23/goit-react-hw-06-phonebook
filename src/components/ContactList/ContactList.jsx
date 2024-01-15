@@ -16,7 +16,7 @@ export const ContactList = () => {
     contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     
-   
+    
     
     return (
         <ul className={css.contactsList}>
